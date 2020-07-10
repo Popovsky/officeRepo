@@ -1,23 +1,24 @@
 'use strict';
 
-class Worker {
-    constructor(name, surname, age, rate = 0, days = 0) {
-        this.name = name;
-        this.surname = surname;
-        this.age = age;
-        this.rate = rate;
-        this.days = days;
+class Fuel {
+    constructor(volume, density) {
+        this.volume = volume;
+        this.density = density;
     }
-
-    isAdult() {
-        return this.age > 17;
-    }
-
-    getSalary() {
-        return this.rate * this.days;
+    getWeight() {
+        return this.density * this.volume;
     }
 }
 
-const worker1 = new Worker('Ivan', 'Ivanov', 17, 100, 30);
-console.log(worker1.getSalary());
-console.log(worker1.isAdult());
+class Car {
+    constructor(weight, fuel) {
+        this.weight = weight;
+        this.fuel = fuel;
+    }
+    getFullWeight() {
+        return this.weight + this.fuel.getWeight();
+    }
+}
+
+const VW = new Car(1400, new Fuel(100, 0.86));
+console.log(VW.getFullWeight());
