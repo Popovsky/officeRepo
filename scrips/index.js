@@ -1,15 +1,17 @@
 'use strict';
 
-const userNumber = Number(prompt('Please input your number'));
-
-try {
-    const validatedUserNumber = validateUserValue(userNumber);
-    alert('Good job');
-} catch (e) {
-    if (e instanceof RangeError) {
-        alert('value must be between 18 and 100');
-    } else if (e instanceof TypeError) {
-        alert('value must be a number');
+class Worker {
+    constructor(name, surname, rate = 0, days = 0) {
+        this.name = name;
+        this.surname = surname;
+        this.rate = rate;
+        this.days = days;
     }
-    throw e;
+
+    getSalary() {
+        return this.rate * this.days;
+    }
 }
+
+const worker1 = new Worker('Ivan', 'Ivanov', 100, 30);
+console.log(worker1.getSalary());
