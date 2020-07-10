@@ -1,26 +1,24 @@
 'use strict';
 
-class Fuel {
-    constructor(volume, density) {
-        this.volume = volume;
-        this.density = density;
+class User {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
     }
 
-    get weight() {
-        return this.density * this.volume;
-    }
-}
-
-class Car {
-    constructor(weight, fuel) {
-        this.weight = weight;
-        this.fuel = fuel;
+    get isAdult(){
+        return this.age > 17;
     }
 
-    get fullWeight() {
-        return this.weight + this.fuel.weight;
+    static isAdult(user) {
+        return user.isAdult;
+    }
+
+    static isUser(obj) {
+        return obj instanceof User;
     }
 }
 
-const VW = new Car(1400, new Fuel(100, 0.86));
-console.log(VW.fullWeight);
+const user1 = new User('Test', 17);
+console.log(User.isAdult(user1));
+console.log(User.isAdult(user1));
