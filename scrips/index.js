@@ -5,6 +5,7 @@ class Fuel {
         this.volume = volume;
         this.density = density;
     }
+
     getWeight() {
         return this.density * this.volume;
     }
@@ -15,6 +16,7 @@ class Car {
         this.weight = weight;
         this.fuel = fuel;
     }
+
     getFullWeight() {
         return this.weight + this.fuel.getWeight();
     }
