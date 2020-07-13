@@ -1,44 +1,26 @@
 'use strict';
 
-class User {
-    constructor(name, surname, age, email, isBanned = false) {
+class Squirrel {
+    constructor(name) {
         this._name = name;
-        this._surname = surname;
-        this._age = age;
-        this._email = email;
-        this._isBanned = isBanned;
     }
 
-    set isBanned(v) {
-        if (typeof v !== 'boolean') {
-            throw new TypeError();
-        }
-        this._isBanned = v;
+    eat() {
+        return `Squirrel ${this._name} is eating`;
     }
 
-    get email() {
-        return this._email;
-    }
-
-    getFullName() {
-        return `${this._name} ${this._surname}`;
-    }
-
-    get isAdult() {
-        return this._age > 17;
+    climbTree() {
+        return `Squirrel ${this._name} is climbing`;
     }
 }
 
-class Admin extends User {
-    constructor(name, surname, age, email) {
-        super(name, surname, age, email, false);
+class FlyingSquirrel extends Squirrel {
+    constructor(name, maxRange) {
+        super(name);
+        this._maxRange = maxRange;
     }
 
-    bad(user) {
-        return user._isBanned = true;
-    }
-
-    unBan(user) {
-        return user._isBanned = false;
+    fly() {
+        return `Squirrel ${this._name} is flying on ${this._maxRange} metres`;
     }
 }
