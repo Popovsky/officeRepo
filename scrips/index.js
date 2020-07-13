@@ -1,24 +1,44 @@
 'use strict';
 
 class User {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
+    constructor(name, surname, age, email, isBanned = false) {
+        this._name = name;
+        this._surname = surname;
+        this._age = age;
+        this._email = email;
+        this._isBanned = isBanned;
     }
 
-    get isAdult(){
-        return this.age > 17;
+    set isBanned(v) {
+        if (typeof v !== 'boolean') {
+            throw new TypeError();
+        }
+        this._isBanned = v;
     }
 
-    static isAdult(user) {
-        return user.isAdult;
+    get email() {
+        return this._email;
     }
 
-    static isUser(obj) {
-        return obj instanceof User;
+    getFullName() {
+        return `${this._name} ${this._surname}`;
+    }
+
+    get isAdult() {
+        return this._age > 17;
     }
 }
 
-const user1 = new User('Test', 17);
-console.log(User.isAdult(user1));
-console.log(User.isAdult(user1));
+class Admin extends User {
+    constructor(name, surname, age, email) {
+        super(name, surname, age, email, false);
+    }
+
+    bad(user) {
+        return user._isBanned = true;
+    }
+
+    unBan(user) {
+        return user._isBanned = false;
+    }
+}
