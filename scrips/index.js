@@ -1,41 +1,32 @@
 'use strict';
 
-class Squirrel {
+class Figure {
     constructor(name) {
         this._name = name;
     }
-
-    eat() {
-        return `Squirrel ${this._name} is eating`;
-    }
-
-    climbTree() {
-        return `Squirrel ${this._name} is climbing`;
+    getArea() {
+        return null;
     }
 }
 
-class FlyingSquirrel extends Squirrel {
-    constructor(name, maxRange) {
-        super(name);
-        this._maxRange = maxRange;
+class Circle extends Figure {
+    constructor(radius) {
+        super('circle');
+        this._radius = radius;
     }
 
-    fly() {
-        return `Squirrel ${this._name} is flying on ${this._maxRange} metres`;
+    getArea() {
+        return Math.PI * this._radius * this._radius;
     }
 }
 
-class PushkinSquirrel extends FlyingSquirrel {
-    constructor(name, maxRange, songs) {
-        super(name, maxRange);
-        this._songs = songs;
+/**
+ *
+ * @param {Figure} figure
+ */
+function getFigureArea(figure) {
+    if (figure instanceof Figure) {
+        return figure.getArea();
     }
-
-    dance(){
-        return `Squirrel ${this._name} is dancing`;
-    }
-
-    getSongs(songs) {
-        this._songs.forEach(el => console.log(el));
-    }
+    throw new TypeError();
 }
