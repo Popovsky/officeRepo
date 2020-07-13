@@ -24,3 +24,18 @@ class FlyingSquirrel extends Squirrel {
         return `Squirrel ${this._name} is flying on ${this._maxRange} metres`;
     }
 }
+
+class PushkinSquirrel extends FlyingSquirrel {
+    constructor(name, maxRange, songs) {
+        super(name, maxRange);
+        this._songs = songs;
+    }
+
+    dance(){
+        return `Squirrel ${this._name} is dancing`;
+    }
+
+    getSongs(songs) {
+        this._songs.forEach(el => console.log(el));
+    }
+}
