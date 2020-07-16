@@ -38,7 +38,6 @@ class Stack {
         const lastItem = this[`_${--this._size}`];
         delete this[`_${this._size}`];
         return lastItem;
-
     }
 
     pick() {
@@ -50,22 +49,34 @@ class Stack {
 
 }
 
+const stack = new Stack();
+const string = prompt('Enter brackets');
 const brackets = {
     '(': ')',
     '[': ']',
     '{': '}',
 };
 
-const stack = new Stack();
-const string = prompt('Enter brackets').split('').forEach(el => {
-    if (el === Object.keys(brackets)[0] || el === Object.keys(brackets)[1] || el === Object.keys(brackets)[2]) {
-        stack.push(el);
-    } else {
-        if (el === brackets[stack.pick()]) {
-            stack.pop();
+alert(isCorrectBracketsSequence(string));
+
+function isCorrectBracketsSequence(str) {
+    for (const stringElement of str) {
+        switch (stringElement) {
+            case brackets[stack.pick()]:
+                stack.pop();
+                break;
+            case brackets["("]:
+            case brackets["["]:
+            case brackets["{"]:
+                return false;
+            case Object.keys(brackets)[0]:
+            case Object.keys(brackets)[1]:
+            case Object.keys(brackets)[2]:
+                stack.push(stringElement);
+                break;
+            default:
+                break;
         }
     }
-});
-if (stack.isEmpty) {
-    alert('Empty stack');
+    return stack.isEmpty;
 }
