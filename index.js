@@ -1,10 +1,9 @@
 'use strict';
 
-const usersToMessageMap = new Map();
-const vova = {
-    name: 'Vova',
-    surname: 'Vovich',
-    age: 43,
-}
-usersToMessageMap.set(vova, [{time: '2020-12-03 19:23', value: 'message'}]);
+const buttons = document.getElementsByTagName('button');
 
+for (const btn of buttons) {
+    btn.addEventListener('click', el => {
+        console.log(el.target.dataset.key);
+    });
+}
